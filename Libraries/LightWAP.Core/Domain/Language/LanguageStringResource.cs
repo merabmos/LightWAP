@@ -4,12 +4,12 @@ using System.Text;
 
 namespace LightWAP.Core.Domain.Language
 {
-    class LanguageStringResource
+    public class LanguageStringResource
     {
+        public int Id { get; set; }
         public int LanguageId { get; set; }
-
-        public string ResourceName { get; set; }
-
+        public string ResourceKey { get; set; }
         public string ResourceValue { get; set; }
+        public Language Language { get; set; }
     }
 }
