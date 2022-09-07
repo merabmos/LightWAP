@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LightWAP.Core\LightWAP.Core.csproj" />
+    <ProjectReference Include="..\LightWAP.Data\LightWAP.Data.csproj" />
+  </ItemGroup>
+
+</Project>
