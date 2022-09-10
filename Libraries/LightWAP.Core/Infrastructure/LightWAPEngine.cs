@@ -24,7 +24,7 @@ namespace LightWAP.Core.Infrastructure
                 OrderBy(dependencyRegistrars => dependencyRegistrars.Order);
 
             foreach (var dependencyRegistrar in instances)
-                dependencyRegistrar.Register(services, typeFinder);
+                dependencyRegistrar.Register(services);
 
             services.AddSingleton(services);
         }

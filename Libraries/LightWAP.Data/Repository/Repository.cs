@@ -4,11 +4,13 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using LightWAP.Data;
-using LightWAP.Services.Repository.Interfaces;
+using LightWAP.Data.Repository.Interfaces;
+using System.Linq;
+using LightWAP.Core.Domain;
 
-namespace WebStore.Services.Repository
+namespace LightWAP.Data.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         #region Properties
 
@@ -49,6 +51,12 @@ namespace WebStore.Services.Repository
         {
             return await _table.ToListAsync();
         }
+
+        public async Task<TEntity> GetByIdAsync(object id)
+        { 
+            return await _table.FirstOrDefaultAsync(o =>  o.Id == Convert.ToInt32(id));
+        }
+
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();

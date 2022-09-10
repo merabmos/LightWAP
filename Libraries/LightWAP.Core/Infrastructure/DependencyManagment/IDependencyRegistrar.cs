@@ -8,7 +8,7 @@ namespace LightWAP.Core.Infrastructure.DependencyManagment
 {
     public interface IDependencyRegistrar
     {
-        void Register(IServiceCollection services, ITypeFinder typeFinder);
+        void Register(IServiceCollection services);
 
         int Order { get; }
     }

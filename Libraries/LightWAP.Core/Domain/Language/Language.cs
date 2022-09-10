@@ -4,9 +4,8 @@ using System.Text;
 
 namespace LightWAP.Core.Domain.Language
 {
-    public class Language
+    public class Language : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string LanguageCulture { get; set; }
         public string FlagImageFileName { get; set; }

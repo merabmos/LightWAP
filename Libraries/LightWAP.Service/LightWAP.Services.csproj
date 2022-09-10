@@ -9,8 +9,4 @@
     <ProjectReference Include="..\LightWAP.Data\LightWAP.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Product\Interfaces\" />
-  </ItemGroup>
-
 </Project>

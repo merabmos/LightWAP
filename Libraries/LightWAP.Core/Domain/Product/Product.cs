@@ -4,7 +4,7 @@ using System.Text;
 using LightWAP.Core.Domain.Category;
 namespace LightWAP.Core.Domain.Product
 {
-    public class Product
+    public class Product : BaseEntity
     {
         public int Id { get; set; }
         public int? CategoryId { get; set; }

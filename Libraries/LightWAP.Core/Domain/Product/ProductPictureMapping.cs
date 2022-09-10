@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LightWAP.Core.Domain.Product
 {
-    public class ProductPictureMapping
+    public class ProductPictureMapping : BaseEntity
     {
         public int Id { get; set; }
         public int? ProductId { get; set; }
