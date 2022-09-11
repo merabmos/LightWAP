@@ -18,4 +18,10 @@
     <ProjectReference Include="..\..\Libraries\LightWAP.Data\LightWAP.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Factories\" />
+    <Folder Include="Factories\" />
+  </ItemGroup>
+
 </Project>

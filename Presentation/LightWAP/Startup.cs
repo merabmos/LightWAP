@@ -27,7 +27,7 @@ namespace LightWAP.Web
         public void ConfigureServices(IServiceCollection services)
         {
             var engine = EngineContext.Create();
-            
+
             engine.RegisterDependencies(services);
 
             services.AddControllersWithViews();
@@ -57,9 +57,21 @@ namespace LightWAP.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "adminPanel",
+                    areaName: "Department",
+                    pattern: "Department/{controller=Language}/{action=Index}"
+                );
+                endpoints.MapControllerRoute(
+                    name: "areaRoute",
+                    pattern: "{area:exists}/{controller}/{action}"
+                );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
             });
         }
     }
