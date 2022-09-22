@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LightWAP.Web.Areas.Admin.Models.Language.LanguageStringResourceModel>
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LanguageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResourceKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResourceValue)
+            </th>
+            <th>
+                <button id="createResource">Create New</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody Id="resources">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.LanguageId)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.ResourceKey)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.ResourceValue)
+                    </td>
+                    <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+        $("#createResource").click(function(){
+                
+        });
+    });
+</script>

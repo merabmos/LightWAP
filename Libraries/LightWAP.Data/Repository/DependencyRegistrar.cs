@@ -14,6 +14,6 @@ namespace LightWAP.Data.Repository
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
-        public int Order => 1;
+        public int Order => 0;
     }
 }

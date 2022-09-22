@@ -1,4 +1,24 @@
-﻿@{
+﻿@model List<LanguageModel>
+@{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<h1 class="display-4"> Ramdenia trialebs sul borbali sul cirkulirebs ? </h1>
+<a asp-action="Create">Add</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th> Name </th>
+        <th> Published </th>
+    </tr>
+    @foreach (var language in Model)
+    {
+        <tr>
+            <td> @language.Id </td>
+            <td> @language.Name </td>
+            <td> @language.Published </td>
+            <td>
+                <a asp-action="Edit"  asp-route-id="@language.Id">Edit</a>
+            </td>
+        </tr>
+    }
+</table>

@@ -11,6 +11,7 @@ namespace LightWAP.Services.Localization.Interfaces
         Task InsertLanguageAsync(Language language);
         Task DeleteLanguageAsync(Language language);
         Task UpdateLanguageAsync(Language language);
-        Task<IList<Language>> GetAllLanguagesAsync(Language language);
+        Task<IList<Language>> GetAllLanguagesAsync();
+        Task<Language> GetLanguageByIdAsync(object id);
     }
 }

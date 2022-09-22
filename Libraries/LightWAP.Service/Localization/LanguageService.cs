@@ -11,7 +11,7 @@ namespace LightWAP.Services.Localization
     public class LanguageService : ILanguageService
     {
         #region Properties
-        public readonly IRepository<Language> _repository;
+        private readonly IRepository<Language> _repository;
         #endregion
 
         #region Constructor
@@ -21,7 +21,7 @@ namespace LightWAP.Services.Localization
         }
         #endregion
 
-        #region Method
+        #region Methods
         public async Task InsertLanguageAsync(Language language)
         {
             await _repository.InsertAsync(language);
@@ -36,7 +36,7 @@ namespace LightWAP.Services.Localization
             await _repository.DeleteAsync(language);
         }
 
-        public async Task<IList<Language>> GetAllLanguagesAsync(Language language)
+        public async Task<IList<Language>> GetAllLanguagesAsync()
         {
             return await _repository.GetAllAsync();
         }

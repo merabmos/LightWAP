@@ -9,4 +9,11 @@
     <ProjectReference Include="..\LightWAP.Data\LightWAP.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Catalog\Category\" />
+    <Folder Include="Catalog\Interfaces\" />
+    <Folder Include="Catalog\Picture\" />
+    <Folder Include="Catalog\Product\" />
+  </ItemGroup>
+
 </Project>

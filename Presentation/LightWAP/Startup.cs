@@ -26,13 +26,13 @@ namespace LightWAP.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var engine = EngineContext.Create();
-
-            engine.RegisterDependencies(services);
 
             services.AddControllersWithViews();
             services.AddDbContext<LightWAPDBContext>(
             options => options.UseSqlServer(Configuration.GetConnectionString("LightWAPConnection")));
+            var engine = EngineContext.Create();
+
+            engine.RegisterDependencies(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

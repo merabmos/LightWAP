@@ -1,48 +1,75 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LightWAP.Web.Areas.Admin.Factories.Interfaces;
+using LightWAP.Web.Areas.Admin.Models.Language;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace LightWAP.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class LanguageController : Controller
     {
-        // GET: LanguageController
-        public ActionResult Index()
-        {
-            return View();
-        }
+        #region Fields
+        public readonly ILanguageFactory _languageFactory;
+        #endregion
 
-        // GET: LanguageController/Details/5
-        public ActionResult Details(int id)
+        #region Constructor
+        public LanguageController(ILanguageFactory languageFactory)
         {
-            return View();
+            _languageFactory = languageFactory;
+        }
+        #endregion
+
+        #region Methods
+        // GET: LanguageController
+        public async Task<ActionResult> Index()
+        {
+            var languages = await _languageFactory.PrepareLanguageModelsAsync();
+
+            if (languages.Count != 0)
+            {
+                return View(languages);
+            }
+            else
+            {
+                return RedirectToAction("Create");
+            }
         }
 
         // GET: LanguageController/Create
         public ActionResult Create()
         {
-            return View();
+            LanguageModel languageModel = new LanguageModel();
+
+            return View(languageModel);
         }
 
         // POST: LanguageController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(LanguageModel model)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            if (!ModelState.IsValid)
             {
                 return View();
             }
+
+            await _languageFactory.AddLanguageAsync(model);
+            
+            return RedirectToAction("Edit");
         }
 
         // GET: LanguageController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+
+            var model = await _languageFactory.PrepareLanguageModelAsync(id);
+
+            return View(model);
         }
 
         // POST: LanguageController/Edit/5
@@ -80,5 +107,7 @@ namespace LightWAP.Web.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        #endregion
     }
 }
