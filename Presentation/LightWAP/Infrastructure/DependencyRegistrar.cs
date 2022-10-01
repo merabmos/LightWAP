@@ -22,6 +22,8 @@ namespace LightWAP.Web.Infrastructure
             #region Factories
 
             services.AddScoped<ILanguageFactory, LanguageFactory>();
+            services.AddScoped<ILanguageStringResourceFactory, LanguageStringResourceFactory>();
+
 
             #endregion
         }

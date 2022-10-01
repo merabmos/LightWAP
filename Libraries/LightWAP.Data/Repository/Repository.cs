@@ -56,7 +56,6 @@ namespace LightWAP.Data.Repository
         { 
             return await _table.FirstOrDefaultAsync(o =>  o.Id == Convert.ToInt32(id));
         }
-
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();

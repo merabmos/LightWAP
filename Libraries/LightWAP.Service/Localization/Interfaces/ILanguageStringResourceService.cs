@@ -13,5 +13,6 @@ namespace LightWAP.Services.Localization.Interfaces
         Task UpdateLanguageStringResourceAsync(LanguageStringResource language);
         Task<IList<LanguageStringResource>> GetAllLanguagesStringResourcesAsync();
         Task<LanguageStringResource> GetLanguageStringResourceByIdAsync(object id);
+        Task<LanguageStringResource> GetLanguageResourceByKeyAsync(string key);
     }
 }

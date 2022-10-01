@@ -46,8 +46,7 @@
         </form>
     </div>
 </div>
-
-@Html.Partial("_LanguageResourceStringList", Model.LanguageStringResources)
+<a href="/Admin/Language/LanguageResourceStringMain?languageId=@Model.Id">Resources</a>
 
 @section Scripts {
     @{

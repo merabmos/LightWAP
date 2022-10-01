@@ -1,0 +1,101 @@
+﻿@model IEnumerable<LightWAP.Web.Areas.Admin.Models.Language.LanguageStringResourceModel>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    string languageId = TempData["LanguageId"].ToString();
+}
+<div id="ramme">
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ResourceKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResourceValue)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    @if (Model != null)
+    {
+        <tbody>
+
+            <tr>
+                <td>
+                    <input type="text" id="resourceKey" placeholder="Resource Key" />
+                </td>
+                <td>
+                    <input type="text" id="resourceValue" placeholder="Resource Value" />
+                </td>
+                <td id="tdSpaceForButtons">
+                    <button type="button" class="btn btn-outline-dark" id="createResource">Create</button>
+                    <button type="button" class="btn btn-sm closeEdit" style="display:none;"> create </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot Id="resources">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="resourceKeyOutput">
+                        @Html.DisplayFor(modelItem => item.ResourceKey)
+                    </td>
+                    <td class="resourceValueOutput">
+                        @Html.DisplayFor(modelItem => item.ResourceValue)
+                    </td>
+                    <td>
+                        <a href="#" class="editOrder"> Edit </a> |
+                        <a href="#" class="deleteOrder"> Delete </a>
+                    </td>
+                </tr>
+            }
+        </tfoot>
+    }
+</table>
+
+<script>
+        $(document).ready(function(){
+
+            $(document).on("click","#createResource",function() {
+              var resourceValue = $("#resourceValue").val();
+              var resourceKey = $("#resourceKey").val();
+                 $.post("/Admin/Language/LanguageResourceStringMain", {languageId: @languageId, resourceKey: resourceKey, resourceValue: resourceValue}).
+            done(function(response)
+            {
+                   $('#resources').append(`<tr>
+                   <td>${response.model.resourceKey}</td>
+                   <td>${response.model.resourceValue}</td>
+                   <td>
+                         <a href="#" class="editOrder"> Edit </a> |
+                         <a href="#" class="deleteOrder"> Delete </a>
+                   </tr>`);
+
+                   $("#resourceKey").val("");
+                   $("#resourceValue").val("");
+            });
+        });
+
+       $(document).on("click",".editOrder",function(event) {
+           $("#createResource").attr("id","editResource");
+           $("#editResource").empty().html("Edit");
+           var currentBtnParentTr = $(this).parent().parent();
+           var value = currentBtnParentTr.children(".resourceValueOutput").text();
+           var key = currentBtnParentTr.children(".resourceKeyOutput").text();
+           $("#resourceKey").val(key.trim());
+           $("#resourceValue").val(value.trim());
+           $(".closeEdit").css("display","inline-block")
+       });
+
+       $(".closeEdit").click(function(){
+           $(".closeEdit").css("display","none")
+           $("#editResource").attr("id","createResource");
+           $("#createResource").empty().html("Create");
+           $("#resourceKey").val("");
+           $("#resourceValue").val("");
+       });
+
+    });
+</script>
